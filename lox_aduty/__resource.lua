@@ -16,14 +16,4 @@ client_scripts {
 server_scripts {
     'server.lua',
     'config.lua'
-}
-
-client_script '@anticheat/xDxDxDxDxD.lua'
-
-client_script '@WaveShield/xDxDxDxDxD.lua'
-
-client_script '@WaveShield/xDxDxDxDxD.lua'
-
-client_script '@WaveShield/xDxDxDxDxD.lua'
-client_script '@187/79902.lua'
-client_script '@187/77449.lua'
+}    
