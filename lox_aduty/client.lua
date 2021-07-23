@@ -5,7 +5,7 @@ local headDots = false
 local health = false
 local invis = false
 local noclip = false
-local espDistance = 200
+local espDistance = 100
 ESX = nil
 
 
@@ -27,13 +27,13 @@ RegisterCommand('noclip', function(source, args)
     if aduty then
         noclip = not noclip
         if noclip then
-		    TriggerEvent(Config.Notification, "#1cf6f9", "Evolution Administration", "Du hast NoClip angeschaltet.")
+		    TriggerEvent(Config.Notification, "#1cf6f9", "LOX | Aduty", "Du hast NoClip angeschaltet.")
         end
         if not noclip then
-		    TriggerEvent(Config.Notification, "#1cf6f9", "Evolution Administration", "Du hast NoClip ausgeschaltet.")
+		    TriggerEvent(Config.Notification, "#1cf6f9", "LOX | Aduty", "Du hast NoClip ausgeschaltet.")
         end
     else
-        TriggerEvent(Config.Notification, "#1cf6f9", "Evolution Administration", "Du bist nicht im Admindienst.")
+        TriggerEvent(Config.Notification, "#1cf6f9", "LOX | Aduty", "Du bist nicht im Admindienst.")
     end
 end)
 
@@ -129,9 +129,9 @@ end
 RegisterCommand('dvradius', function(source, args)
     if aduty then
         deleteVehiclesInRadius(GetVehiclePedIsIn(PlayerPedId(), 0), 200.0)
-        TriggerEvent(Config.Notification, "#1cf6f9", "", "Du hast die Fahrzeuge im Radius von 200 Metern entfernt.")
+        TriggerEvent(Config.Notification, "#1cf6f9", "LOX | Aduty", "Du hast die Fahrzeuge im Radius von 200 Metern entfernt.")
     else
-        TriggerEvent(Config.Notification, "#1cf6f9", "Evolution Administration", "Du bist nicht im Admindienst.")
+        TriggerEvent(Config.Notification, "#1cf6f9", "LOX | Aduty", "Du bist nicht im Admindienst.")
     end
 end)
 
@@ -155,9 +155,9 @@ TeleportToWaypoint = function()
             Citizen.Wait(5)
          end
 
-         TriggerEvent(Config.Notification, "#1cf6f9", "", "Du hast dich teleportiert")
+         TriggerEvent(Config.Notification, "#1cf6f9", "LOX | Aduty", "Du hast dich teleportiert")
     else
-        TriggerEvent(Config.Notification, "#1cf6f9", "", "Du musst eine Markierung auf der Karte setzen.")
+        TriggerEvent(Config.Notification, "#1cf6f9", "LOX | Aduty", "Du musst eine Markierung auf der Karte setzen.")
     end
 end
 
@@ -165,7 +165,7 @@ RegisterCommand('tpm', function(source, args)
     if aduty then
         TeleportToWaypoint()
     else
-        TriggerEvent(Config.Notification, "#1cf6f9", "Evolution Administration", "Du bist nicht im Admindienst.")
+        TriggerEvent(Config.Notification, "#1cf6f9", "LOX | Aduty", "Du bist nicht im Admindienst.")
     end
 end)
 
@@ -185,7 +185,7 @@ RegisterCommand('goto', function(source, args)
 
         end
     else
-        TriggerEvent(Config.Notification, "#1cf6f9", "Evolution Administration", "Du bist nicht im Admindienst.")
+        TriggerEvent(Config.Notification, "#1cf6f9", "LOX | Aduty", "Du bist nicht im Admindienst.")
     end
 end)
 
@@ -204,7 +204,7 @@ RegisterCommand('bring', function(source, args)
 
         end
     else
-        TriggerEvent(Config.Notification, "#1cf6f9", "Evolution Administration", "Du bist nicht im Admindienst.")
+        TriggerEvent(Config.Notification, "#1cf6f9", "LOX | Aduty", "Du bist nicht im Admindienst.")
     end
 end)
 
@@ -405,12 +405,20 @@ function setUniform(group)
                 TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.superadmin.male)
             elseif group == "pl" then
                 TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.pl.male)
+            elseif group == "stvpl" then
+                TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.stvpl.male)
             elseif group == "manager" then
                 TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.manager.male)
+            elseif group == "teamleitung" then
+                TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.teamleitung.male)
             elseif group == "admin" then
                 TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.admin.male)
+            elseif group == "supermod" then
+                TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.supermod.male)
             elseif group == "mod" then
                 TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.mod.male)
+            elseif group == "supersupport" then
+                TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.supersupport.male)
             elseif group == "support" then
                 TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.support.male)
             elseif group == "_dev" then
@@ -428,21 +436,45 @@ function setUniform(group)
                     TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.anna.female)	
                 else
                     TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.pl.female)	
-                end    
+                end   
+            elseif group == "stvpl" then
+                if GetPlayerName(PlayerId()) == "KnuddeligeAnna" then
+                    TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.anna.female)	
+                else
+                    TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.stvpl.female)	
+                end   
             elseif group == "manager" then
                 if GetPlayerName(PlayerId()) == "KnuddeligeAnna" then
                     TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.anna.female)	
                 else
                     TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.manager.female)	
-                end    
+                end      
+            elseif group == "teamleitung" then
+                if GetPlayerName(PlayerId()) == "KnuddeligeAnna" then
+                    TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.anna.female)	
+                else
+                    TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.teamleitung.female)	
+                end  
             elseif group == "admin" then
                 if GetPlayerName(PlayerId()) == "KnuddeligeAnna" then
                     TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.anna.female)	
                 else
                     TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.admin.female)	
+                end  
+            elseif group == "supermod" then
+                if GetPlayerName(PlayerId()) == "KnuddeligeAnna" then
+                    TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.anna.female)	
+                else
+                    TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.supermod.female)	
                 end
             elseif group == "mod" then
                 TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.mod.female)
+            elseif group == "supersupport" then
+                if GetPlayerName(PlayerId()) == "KnuddeligeAnna" then
+                    TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.anna.female)	
+                else
+                    TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.supersupport.female)	
+                end
             elseif group == "support" then
                 if GetPlayerName(PlayerId()) == "KnuddeligeAnna" then
                     TriggerEvent("skinchanger:loadClothes", skin, Config.Nils.anna.female)	
@@ -483,7 +515,7 @@ end)
 RegisterNetEvent("toggleAduty")
 AddEventHandler("toggleAduty", function()
     ESX.TriggerServerCallback('rw:getGroup', function(group)
-        if group == "pl" or group == "manager" or group == "superadmin" or group == "admin" or group == "mod" or group == "support" or group == "_dev"then
+    if xPlayer.getGroup() == "pl" or xPlayer.getGroup() == "stvpl" or xPlayer.getGroup() == "manager" or xPlayer.getGroup() == "teamleitung" or xPlayer.getGroup() == "superadmin" or xPlayer.getGroup() == "admin" or xPlayer.getGroup() == "supermod" or xPlayer.getGroup() == "mod" or xPlayer.getGroup() == "supersupport" or xPlayer.getGroup() == "support" or xPlayer.getGroup() == "_dev" then
             local playerPed = PlayerPedId()
             if aduty then
                 aduty = false
@@ -491,17 +523,17 @@ AddEventHandler("toggleAduty", function()
                 showNames = false
                 headDots = false
                 health = false
-                TriggerEvent(Config.Notification, "#fe1502", "ADMINISTRATION", "Du bist nun nicht mehr im Admindienst.")
+                TriggerEvent(Config.Notification, "#fe1502", "LOX | Aduty", "Du bist nun nicht mehr im Admindienst.")
                 ESX.TriggerServerCallback('lox_skin:getPlayerSkin', function(skin)
                     TriggerEvent('skinchanger:loadSkin', skin)
                 end)
             else
                 aduty = true
-                TriggerEvent(Config.Notification, "#3f7d33", "Admindienst", "Du hast nun den Admindienst angetreten.")
+                TriggerEvent(Config.Notification, "#3f7d33", "LOX | Aduty", "Du hast nun den Admindienst angetreten.")
                 setUniform(group)
                 godmode = true
                 showNames = true
-                headDots = true
+                headDots = false
                 health = true
              end
         end
